@@ -1,0 +1,97 @@
+# Air Quality sensor driver parameters configuration file
+#
+# Luca Callegari <luketto.c@gmail.com>
+# Mirko Damiano <mirketto2001.md@gmail.com>
+#
+# August 4, 2026
+
+header_include_path: server_raw/server.hpp
+node_class_name: server_components::ReaderNode
+manager_name: pmanager_
+
+params:
+  autostart:
+    type: bool
+    default_value: false
+    description: "Start sampling right inside the constructor"
+    constraints: ""
+    read_only: false
+    var_name: autostart_
+
+  sensor.calibration.conv_CO:
+    type: double
+    default_value: 0.4
+    min_value: 0.0
+    max_value: 0.4
+    step: 0.0
+    description: "Conversion from mV to ppb"
+    constraints: ""
+    read_only: true
+    var_name: conv_CO_
+
+  sensor.calibration.m_VOC:
+    type: double
+    default_value: 15.76
+    min_value: 0.0
+    max_value: 15.76
+    step: 0.0
+    description: "Conversion from V to ppm"
+    constraints: ""
+    read_only: true
+    var_name: m_VOC_
+
+  sensor.calibration.q_VOC:
+    type: double
+    default_value: 0.73
+    min_value: 0.0
+    max_value: 0.73
+    step: 0.0
+    description: "Conversion from V to ppm"
+    constraints: ""
+    read_only: true
+    var_name: q_VOC_
+
+  sensor.calibration.RF_VOC:
+    type: double
+    default_value: 0.5
+    min_value: 0.0
+    max_value: 0.5
+    step: 0.0
+    description: "Response PID factor"
+    constraints: ""
+    read_only: true
+    var_name: RF_VOC_
+
+  sensor.calibration.RO_CH4:
+    type: double
+    default_value: 1.5
+    min_value: 0.0
+    max_value: 1.5
+    step: 0.0
+    description: ""
+    constraints: ""
+    read_only: true
+    var_name: RO_CH4_
+
+  sensor.device.baudrate:
+    type: integer
+    default_value: 115200
+    min_value: 0
+    max_value: 115200
+    step: 1
+    description: "Baudrate to configure the sensor's serial port"
+    constraints: ""
+    read_only: true
+    var_name: baudrate_
+
+  sensor.device.file:
+    type: string
+    default_value: /dev/ttyUSB0
+    description: "Serial port full path"
+    constraints: ""
+    read_only: true
+    var_name: serial_port_path_
+
+# Note that read_only: true is set for almost all parameters except autostart.
+# Therefore, attempting to run 'ros2 param set' on a read-only parameter will cause ROS 2 to return an
+# error indicating that the parameter is read-only.
